@@ -1,0 +1,90 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<div metal:fill-slot="main">
+<metal:main_macro define-macro="main"
+     tal:define="results view/contents;
+                 infos view/infos;
+                 b_start python:request.get('b_start', 0);
+                 kssClassesView context/@@kss_field_decorator_view;
+                 getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                 templateId template/getId;
+                 filecartinstalled view/isFileCartInstalled;
+                 canusefilecart view/canUseFileCart">
+
+    <div tal:replace="structure provider:plone.abovecontenttitle" />
+    
+    <h1 tal:content="here/pretty_title_or_id" class="documentFirstHeading">Title or id</h1>
+
+    <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+    <p metal:use-macro="here/kss_generic_macros/macros/generic_description_view">
+        Description
+    </p>
+        
+    <div tal:replace="structure provider:plone.abovecontentbody" />
+
+    <div tal:condition="python: not results">
+    <p class="discreet"
+       i18n:translate="description_no_items_in_folder">
+        There are currently no items in this folder.
+    </p>
+    </div>
+
+    <div tal:condition="results">
+        <form action="@@filecart-cart" method="post">
+            
+        <tal:button condition="python:filecartinstalled and canusefilecart">
+        <div class="visualClear"><!-- --></div>
+        <br/>
+        <input type="submit" name="add_items" value="Add to Cart"
+               i18n:domain="atreal.filecart"
+               i18n:attributes="value fc_add_to_cart" />
+        <br/><br/>
+        <div class="visualClear"><!-- --></div>
+        </tal:button >
+        
+        <tal:contents tal:condition="results" tal:repeat="content results">
+            <div style="height:200px" class="photoAlbumEntry">
+                <a tal:define="id python:int(b_start)+int(repeat['content'].number()-1)"
+                   tal:attributes="href string:${content/getURL}/view;
+                                   title content/Description">
+                    <span class="photoAlbumEntryWrapper" style="height:128px">
+                        <img src="" alt=""
+                             tal:attributes="src python:infos[content['UID']]['thumb']" />
+                    </span>
+                    <span class="photoAlbumEntryTitle" tal:content="content/pretty_title_or_id">
+                       Title
+                    </span>
+                </a>
+                <input type="checkbox" name="choix[]"
+                       tal:condition="python:infos[content['UID']]['cartable']"
+                       tal:attributes="value content/UID" />
+            </div>
+        </tal:contents>
+        
+        <tal:button condition="python:filecartinstalled and canusefilecart">
+        <div class="visualClear"><!-- --></div>
+        <br/>
+        <input type="submit" name="add_items" value="Add to Cart"
+               i18n:domain="atreal.filecart"
+               i18n:attributes="value fc_add_to_cart" />
+        <br/><br/>
+        <div class="visualClear"><!-- --></div>
+        </tal:button >
+        
+        </form>
+    </div>
+
+    <div tal:replace="structure provider:plone.belowcontentbody" />
+
+</metal:main_macro>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    i18n_domain="plone">
+
+    <five:registerPackage package="." initialize=".initialize" />
+
+    <cmf:registerDirectory
+        name="atreal_override_albumview"
+        />
+
+    <include package=".browser" />
+    
+    <genericsetup:registerProfile
+        name="default"
+        title="OverrideAlbumView"
+        directory="profiles/default"
+        description="Override Album View for FileCart in Plone."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+</configure>

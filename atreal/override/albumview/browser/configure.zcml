@@ -1,0 +1,36 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="plone">
+
+    <include package="plone.app.contentmenu" />
+    
+    <browser:menuItem
+        for="*"
+        menu="plone_displayviews"
+        title="Thumbnail view"
+        action="@@atct_album_view"
+        description=""
+        layer="atreal.override.albumview.interfaces.IOverrideAlbumViewLayer"
+        />
+
+    <browser:page
+        for="*"
+        name="atct_album_view"
+        class=".view.FolderCartView"
+        permission="zope2.View"
+        template="view.pt"
+        layer="atreal.override.albumview.interfaces.IOverrideAlbumViewLayer"
+        />
+
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="search"
+        class=".view.FolderCartView"
+        permission="zope2.View"
+        template="search.pt"
+        layer="atreal.override.albumview.interfaces.IOverrideAlbumViewLayer"
+        />
+</configure>

@@ -1,0 +1,10 @@
+=======================================
+Changelog for atreal.override.albumview
+=======================================
+(name of developer listed in brackets)
+
+1.0.0beta1 - 2009-09-04
+-----------------------
+
+- First public release
+[Florent Michon]

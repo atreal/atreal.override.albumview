@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<componentregistry>
+ <adapters/>
+ <utilities>
+  <utility
+     name="atreal.override.albumview.IOverrideAlbumViewSite"
+     component="atreal.override.albumview.interfaces.IOverrideAlbumViewSite"
+     interface="zope.interface.interfaces.IInterface" />
+ </utilities>
+</componentregistry>

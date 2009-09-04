@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<layers>
+    <layer name="atreal.override.albumview.layer"
+           interface="atreal.override.albumview.interfaces.IOverrideAlbumViewLayer" />
+</layers>
