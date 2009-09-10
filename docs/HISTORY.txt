@@ -3,6 +3,13 @@ Changelog for atreal.override.albumview
 =======================================
 (name of developer listed in brackets)
 
+1.0.0beta2 - 2009-09-10
+-----------------------
+
+- Icons added to override mimetype icons and plone icons 
+[Florent Michon]
+
+
 1.0.0beta1 - 2009-09-04
 -----------------------
 
